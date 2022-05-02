@@ -103,3 +103,7 @@ The wifi is disabled by default.  You can only ssh in from a LAN port.  The LAN 
 is 192.168.1.0/24 by default.
 
 for wireless WAN, copy futel.defaults-wgt634u-wifi to files/etc/uci-defaults/futel.defaults
+
+install luci
+opkg update
+opkg install luci
