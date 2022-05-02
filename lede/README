@@ -2,7 +2,7 @@ Prepare build:
 
 have client.crt client.key
 
-  git clone https://git.openwrt.org/source.git build
+  git clone https://git.openwrt.org/openwrt/openwrt.git build
   cp -r files build
   cp client.crt client.key build/files/etc/openvpn/keys
 
@@ -24,6 +24,8 @@ Set up build for GL-iNet MT300N-v2:
 Build:
 
   cd build
+  scripts/feeds update -a
+  scripts/feeds install -a
   make defconfig
   time make -j2 BUILD_LOG=1 IGNORE_ERRORS=m V=s  # for 2 cores
 
