@@ -26,39 +26,26 @@ delete openvpn.custom_config
 delete openvpn.sample_server
 delete openvpn.sample_client
 
-set openvpn.foo=openvpn
-set openvpn.foo.enabled=1
-set openvpn.foo.client='1'
-set openvpn.foo.dev='tun'
-set openvpn.foo.proto='udp'
-set openvpn.foo.remote='vpnbox-prod-foo.phu73l.net'
-set openvpn.foo.resolve_retry='infinite'
-set openvpn.foo.nobind='1'
-set openvpn.foo.persist_key='1'
-set openvpn.foo.persist_tun='0'
-set openvpn.foo.keepalive='10 120'
-set openvpn.foo.remote_cert_tls=server
-set openvpn.foo.ca='/etc/openvpn/keys/ca.crt'
-set openvpn.foo.cert='/etc/openvpn/keys/client.crt'
-set openvpn.foo.key='/etc/openvpn/keys/client.key'
-set openvpn.foo.compress='lzo'
-
-set openvpn.bar=openvpn
-set openvpn.bar.enabled='1'
-set openvpn.bar.client='1'
-set openvpn.bar.dev='tun'
-set openvpn.bar.proto='udp'
-set openvpn.bar.remote='vpnbox-prod-bar.phu73l.net'
-set openvpn.bar.resolve_retry='infinite'
-set openvpn.bar.nobind='1'
-set openvpn.bar.persist_key='1'
-set openvpn.bar.persist_tun='0'
-set openvpn.bar.keepalive='10 120'
-set openvpn.bar.remote_cert_tls=server
-set openvpn.bar.ca='/etc/openvpn/keys/ca.crt'
-set openvpn.bar.cert='/etc/openvpn/keys/client.crt'
-set openvpn.bar.key='/etc/openvpn/keys/client.key'
-set openvpn.bar.compress='lzo'
+add openvpn openvpn
+set openvpn.@openvpn[-1].enabled=1
+set openvpn.@openvpn[-1].client='1'
+set openvpn.@openvpn[-1].dev='tun'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-foo.phu73l.net 1194 udp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-bar.phu73l.net 1194 udp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-foo.phu73l.net 1194 tcp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-bar.phu73l.net 1194 tcp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-stage.phu73l.net 1194 udp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-stage.phu73l.net 1194 tcp'
+set openvpn.@openvpn[-1].resolve_retry='infinite'
+set openvpn.@openvpn[-1].nobind='1'
+set openvpn.@openvpn[-1].persist_key='1'
+set openvpn.@openvpn[-1].persist_tun='0'
+set openvpn.@openvpn[-1].keepalive='10 120'
+set openvpn.@openvpn[-1].remote_cert_tls=server
+set openvpn.@openvpn[-1].ca='/etc/openvpn/keys/ca.crt'
+set openvpn.@openvpn[-1].cert='/etc/openvpn/keys/client.crt'
+set openvpn.@openvpn[-1].key='/etc/openvpn/keys/client.key'
+set openvpn.@openvpn[-1].compress='lzo'
 
 commit openvpn
 
