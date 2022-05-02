@@ -32,7 +32,7 @@ For the Ubiquiti AirRouter, the image is bin/targets/ar71xx/generic/openwrt-ar71
 For the Netgear WGT634U, the image is bin/targets/brcm47xx/legacy/openwrt-brcm47xx-legacy-standard-squashfs.trx
 For the GL-iNet MT300N-v2, the image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-gl-mt300n-v2-squashfs-sysupgrade.bin
 
-Install to router with OpenVPN or LEDE already installed:
+Install to router with OpenWRT already installed:
 
   scp <image> root@192.168.1.1:/tmp
   ssh root@192.168.1.1
