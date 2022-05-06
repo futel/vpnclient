@@ -6,6 +6,9 @@ have client.crt client.key
   cp -r files build
   cp client.crt client.key build/files/etc/openvpn/keys
 
+Note that when building for a different target that previously built,
+"make clean" and "make distclean" first.
+
 Set up build for Netgear WGT634U:
 
   cp config-stub-wgt634u build/.config
@@ -35,10 +38,9 @@ Build:
   make defconfig
   time make -j2 BUILD_LOG=1 IGNORE_ERRORS=m V=s  # for 2 cores
 
-built images are in bin/targets/ar71xx/generic/
-For the Ubiquiti AirRouter, the image is bin/targets/ar71xx/generic/openwrt-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin
-For the Netgear WGT634U, the image is bin/targets/brcm47xx/legacy/openwrt-brcm47xx-legacy-standard-squashfs.trx
-For the GL-iNet MT300N-v2, the image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-gl-mt300n-v2-squashfs-sysupgrade.bin
+For the Ubiquiti AirRouter, the built image is bin/targets/ar71xx/generic/openwrt-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin
+For the Netgear WGT634U, the built image is bin/targets/bcm47xx/legacy/openwrt-bcm47xx-legacy-standard-squashfs.trx
+For the GL-iNet MT300N-v2, the built image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-gl-mt300n-v2-squashfs-sysupgrade.bin
 
 Install to router with OpenWRT already installed:
 
@@ -47,8 +49,6 @@ Install to router with OpenWRT already installed:
   sysupgrade -v -n /tmp/<image>
   
 wait for router to reboot
-
-Ubiquiti AirRouter:
 
 Install to out-of-the-box Ubiquiti AirRouter (caution, don't update with a factory 
 image version 6 or later, or you will flash a locked bootloader):
