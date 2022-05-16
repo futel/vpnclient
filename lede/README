@@ -1,13 +1,14 @@
 Prepare build:
 
+Note that when building for a different target that previously built,
+"make clean" and "make distclean" in the build directory first.
+
 have client.crt client.key
+have correct ca.crt in files/etc/openvpn/keys for client creds
 
   git clone https://git.openwrt.org/openwrt/openwrt.git build
   cp -r files build
   cp client.crt client.key build/files/etc/openvpn/keys
-
-Note that when building for a different target that previously built,
-"make clean" and "make distclean" first.
 
 Set up build for Netgear WGT634U:
 
@@ -40,7 +41,8 @@ Build:
 
 For the Ubiquiti AirRouter, the built image is bin/targets/ar71xx/generic/openwrt-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin
 For the Netgear WGT634U, the built image is bin/targets/bcm47xx/legacy/openwrt-bcm47xx-legacy-standard-squashfs.trx
-For the GL-iNet MT300N-v2, the built image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-gl-mt300n-v2-squashfs-sysupgrade.bin
+For the GL-iNet MT300N-v2, the built image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin 
+
 
 Install to router with OpenWRT already installed:
 
