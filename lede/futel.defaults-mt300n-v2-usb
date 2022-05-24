@@ -8,6 +8,7 @@ commit dhcp
 delete network.globals
 
 set network.wan=interface
+set network.wan.device=usb0
 set network.wan.proto=dhcp
 set network.wan.dns="8.8.8.8 8.8.4.4"
 
