@@ -81,11 +81,6 @@ Notes:
 sysupgrade firmware:
 https://lede-project.org/docs/user-guide/sysupgrade.cli
 https://lede-project.org/docs/guide-quick-start/sysupgrade.luci
-factory firmware:
-https://wiki.openwrt.org/toh/ubiquiti/airrouter
-
-The sysupgrade image is used if openwrt or lede is already on the router. Otherwise the factory image is used.
-Use the -n argument to erase any exisiting config.
 
 Replace passwd step with copying shadow to build/files/etc/shadow
 Replace ip address step with copying network to build/files/etc/config/network?
@@ -93,6 +88,13 @@ Replace ip address step with copying network to build/files/etc/config/network?
 The wifi is disabled by default.  You can only ssh in from a LAN port.  The LAN network
 is 192.168.1.0/24 by default.
 
-install luci
+manual openvpn install:
 opkg update
-opkg install luci
+opkg install openvpn-openssl luci-app-openvpn
+create new openvpn instance by uploading conf
+upload creds to location referenced by conf
+
+Log and status:
+logread -f
+logread -e openvpn
+netstat -l -n -p | grep -e openvpn
