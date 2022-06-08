@@ -22,3 +22,20 @@ port, you should get a /dev/ttyUSBn, where n is probably zero (i.e.
 You might have a permissions problem on the tty device, you might need
 to add yourself to the associated group (on Ubuntu, the group is
 "dialout"). Or, if you are lazy, you can use sudo or become root.
+
+# sysupgrade firmware
+
+https://lede-project.org/docs/user-guide/sysupgrade.cli
+https://lede-project.org/docs/guide-quick-start/sysupgrade.luci
+
+# manual openvpn install
+
+opkg update
+opkg install openvpn-openssl luci-app-openvpn
+create new openvpn instance by uploading conf
+upload creds to location referenced by conf
+
+# Log and status
+logread -f
+logread -e openvpn
+netstat -l -n -p | grep -e openvpn
