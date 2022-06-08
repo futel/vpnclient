@@ -14,22 +14,22 @@ Set up build for Netgear WGT634U:
 
   cp config-stub-wgt634u build/.config
   # for ethernet WAN
-  cp futel.defaults-wgt634u files/etc/uci-defaults/futel.defaults
+  cp futel.defaults-wgt634u build/files/etc/uci-defaults/futel.defaults
   # for wireless WAN
-  cp futel.defaults-wgt634u-wifi to files/etc/uci-defaults/futel.defaults
+  cp futel.defaults-wgt634u-wifi build/files/etc/uci-defaults/futel.defaults
 
 Set up build for Ubiquiti AirRouter:
 
   cp config-stub-airrouter build/.config
-  cp futel.defaults-airrouter files/etc/uci-defaults/futel.defaults
+  cp futel.defaults-airrouter build/files/etc/uci-defaults/futel.defaults
 
 Set up build for GL-iNet MT300N-v2:
 
   cp config-stub-mt300n-v2 build/.config
   # for ethernet WAN
-  cp futel.defaults-mt300n-v2 files/etc/uci-defaults/futel.defaults
+  cp futel.defaults-mt300n-v2 build/files/etc/uci-defaults/futel.defaults
   # for usb (tethering) WAN
-  cp futel.defaults-mt300n-v2-usb files/etc/uci-defaults/futel.defaults
+  cp futel.defaults-mt300n-v2-usb build/files/etc/uci-defaults/futel.defaults
 
 Build:
 
