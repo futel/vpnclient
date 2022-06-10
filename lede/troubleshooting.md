@@ -23,6 +23,17 @@ You might have a permissions problem on the tty device, you might need
 to add yourself to the associated group (on Ubuntu, the group is
 "dialout"). Or, if you are lazy, you can use sudo or become root.
 
+# Recovery without SSH
+
+Recovery requires setting up a TFTP server and
+hosting a stripped down image to flash, and then sysupgrade from it.
+The WGT634U uses kind of a stupid idiosyncratic bootloader (a version
+of CFE). Most modern devices are using u-boot and are generally better
+behaved. The CFE bootloader on the WGT634U has a size limit of a
+little under 4MB, which you can work around by doing two TFTP's, but
+it's even more awkward than flashing twice, once from TFTP and then
+sysupgrade.
+
 # sysupgrade firmware
 
 https://lede-project.org/docs/user-guide/sysupgrade.cli
