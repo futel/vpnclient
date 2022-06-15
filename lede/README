@@ -37,6 +37,7 @@ Build:
   scripts/feeds update -a
   scripts/feeds install -a
   make defconfig
+  make download
   time make -j2 BUILD_LOG=1 IGNORE_ERRORS=m V=s  # for 2 cores
 
 For the Ubiquiti AirRouter, the built image is bin/targets/ar71xx/generic/openwrt-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin
