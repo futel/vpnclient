@@ -1,0 +1,12 @@
+CONFIG_TARGET_ar71xx-ath79=y
+CONFIG_TARGET_ar71xx-ath79_generic=y
+CONFIG_TARGET_ar71xx-ath79_generic_DEVICE_gl-ar750=y
+CONFIG_DEVEL=y
+CONFIG_BUILD_LOG=y
+CONFIG_PACKAGE_kmod-usb-net=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+# CONFIG_PACKAGE_kmod-usb-ohci is not set
+CONFIG_PACKAGE_diffutils=y
+CONFIG_PACKAGE_luci-ssl=y
+CONFIG_PACKAGE_openvpn-openssl=y
