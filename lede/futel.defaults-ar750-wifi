@@ -1,0 +1,86 @@
+#!/bin/sh
+
+uci batch <<EOF
+add_list dhcp.@dnsmasq[0].notinterface=eth0.2
+set dhcp.lan.force=1
+commit dhcp
+
+delete network.globals
+
+set network.wan=interface
+set network.wan.proto=dhcp
+set network.wan.ifname=""
+set network.wan.dns="8.8.8.8 8.8.4.4"
+
+set network.wan6=interface
+set network.wan6.ifname='@wan'
+set network.wan6.proto='dhcpv6'
+set network.wan6.reqprefix='60'
+
+set network.vpn=interface
+set network.vpn.ifname=tun0
+set network.vpn.proto=none
+
+commit network
+
+delete openvpn.custom_config
+delete openvpn.sample_server
+delete openvpn.sample_client
+
+add openvpn openvpn
+set openvpn.@openvpn[-1].enabled=1
+set openvpn.@openvpn[-1].client='1'
+set openvpn.@openvpn[-1].dev='tun'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-foo.phu73l.net 1194 udp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-bar.phu73l.net 1194 udp'
+add_list openvpn.@openvpn[-1].remote='vpnbox-prod-baz.phu73l.net 1194 udp'
+#add_list openvpn.@openvpn[-1].remote='vpnbox-prod-foo.phu73l.net 1194 tcp'
+#add_list openvpn.@openvpn[-1].remote='vpnbox-prod-bar.phu73l.net 1194 tcp'
+#add_list openvpn.@openvpn[-1].remote='vpnbox-prod-baz.phu73l.net 1194 tcp'
+set openvpn.@openvpn[-1].resolve_retry='infinite'
+set openvpn.@openvpn[-1].nobind='1'
+set openvpn.@openvpn[-1].persist_key='1'
+set openvpn.@openvpn[-1].persist_tun='0'
+set openvpn.@openvpn[-1].keepalive='10 120'
+set openvpn.@openvpn[-1].remote_cert_tls=server
+set openvpn.@openvpn[-1].ca='/etc/openvpn/keys/ca.crt'
+set openvpn.@openvpn[-1].cert='/etc/openvpn/keys/client.crt'
+set openvpn.@openvpn[-1].key='/etc/openvpn/keys/client.key'
+set openvpn.@openvpn[-1].compress='lzo'
+
+commit openvpn
+
+set system.@system[0].hostname=futel-gw
+set system.@system[0].timezone='PST8PDT,M3.2.0,M11.1.0'
+commit system
+
+add firewall zone
+set firewall.@zone[-1].input='ACCEPT'
+set firewall.@zone[-1].forward='REJECT'
+set firewall.@zone[-1].output='ACCEPT'
+set firewall.@zone[-1].name='vpn'
+set firewall.@zone[-1].masq='1'
+set firewall.@zone[-1].mtu_fix='1'
+set firewall.@zone[-1].network='vpn'
+
+add firewall forwarding
+set firewall.@forwarding[-1].dest='vpn'
+set firewall.@forwarding[-1].src='lan'
+
+commit firewall
+
+set wireless.radio0.disabled='0'
+set wireless.radio0.channel='auto'
+set wireless.default_radio0.network='wan'
+set wireless.default_radio0.mode='sta'
+set wireless.default_radio0.ssid='REPLACEME'
+set wireless.default_radio0.encryption='psk2'
+set wireless.default_radio0.key='THISBETTERWORK'
+
+commit wireless
+
+EOF
+
+/etc/init.d/odhcpd disable
+/etc/init.d/odhcpd stop
+

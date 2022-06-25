@@ -31,6 +31,14 @@ Set up build for GL-iNet MT300N-v2:
   # for usb (tethering) WAN
   cp futel.defaults-mt300n-v2-usb build/files/etc/uci-defaults/futel.defaults
 
+Set up build for GL-iNet AR750:
+
+  cp config-stub-ar750 build/.config
+  # for ethernet WAN
+  cp futel.defaults-ar750 build/files/etc/uci-defaults/futel.defaults
+  # for wireless WAN  
+  cp futel.defaults-ar750-wifi build/files/etc/uci-defaults/futel.defaults
+
 Build:
 
   cd build
@@ -43,7 +51,7 @@ Build:
 For the Ubiquiti AirRouter, the built image is bin/targets/ar71xx/generic/openwrt-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin
 For the Netgear WGT634U, the built image is bin/targets/bcm47xx/legacy/openwrt-bcm47xx-legacy-standard-squashfs.trx
 For the GL-iNet MT300N-v2, the built image is bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin 
-
+For the GL-iNet ar750, the built image is bin/targets/ath79/generic/openwrt-ath79-generic-glinet_gl-ar750-squashfs-sysupgrade.bin
 
 Install to router with OpenWRT already installed:
 
@@ -66,21 +74,23 @@ power cycle router
 
 All routers:
 
-change password on router
-  ssh root:test@192.168.1.1
-  passwd
+ssh root:test@192.168.1.1
 
-edit /etc/config/network on router for address unique in local network e.g.
+passwd
+
+edit /etc/config/wireless to update ssid and key.
+
+edit /etc/config/network for address unique in local network e.g.
   config interface 'lan'
     ...
     option ipaddr '192.168.8.1'
 
-reboot router
+reboot
 
 Notes:
 
 Replace passwd step with copying shadow to build/files/etc/shadow
-Replace ip address step with copying network to build/files/etc/config/network?
+Replace ip address step with uci network update in futel.defaults, using 192.168.8.1 as a good guess?
 
 The wifi is disabled by default.  You can only ssh in from a LAN port.  The LAN network
 is 192.168.1.0/24 by default.
