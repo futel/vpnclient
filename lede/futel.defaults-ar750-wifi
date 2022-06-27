@@ -9,16 +9,16 @@ delete network.globals
 
 set network.wan=interface
 set network.wan.proto=dhcp
-set network.wan.ifname=""
+set network.wan.device=""
 set network.wan.dns="8.8.8.8 8.8.4.4"
 
 set network.wan6=interface
-set network.wan6.ifname='@wan'
+set network.wan6.device='@wan'
 set network.wan6.proto='dhcpv6'
 set network.wan6.reqprefix='60'
 
 set network.vpn=interface
-set network.vpn.ifname=tun0
+set network.vpn.device=tun0
 set network.vpn.proto=none
 
 commit network

@@ -9,7 +9,7 @@ delete network.globals
 
 set network.wan=interface
 set network.wan.proto=dhcp
-set network.wan.ifname=eth1
+set network.wan.device=eth1
 set network.wan.dns="8.8.8.8 8.8.4.4"
 
 set network.wan6=interface
