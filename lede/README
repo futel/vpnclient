@@ -1,7 +1,6 @@
 Prepare build:
 
-Note that when building for a different target than previously built,
-"make distclean" in the build directory first.
+If a previous build is suspect (for example, an aborted build that causes problems) "make dirclean" in the build directory. If something is seriously broken, "make distclean", but this shouldn't be necessary.
 
 have client.crt client.key
 have correct ca.crt in files/etc/openvpn/keys for client creds
