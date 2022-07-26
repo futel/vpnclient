@@ -44,6 +44,7 @@ Build:
   scripts/feeds update -a
   scripts/feeds install -a
   make defconfig
+  make menuconfig # XXX select openvpn and make sure CONFIG_PACKAGE_openvpn-openssl is set in .config
   make download
   time make -j2 BUILD_LOG=1 IGNORE_ERRORS=m V=s  # for 2 cores
 
