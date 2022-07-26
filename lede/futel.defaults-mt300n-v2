@@ -55,7 +55,7 @@ commit system
 
 add firewall zone
 set firewall.@zone[-1].input='ACCEPT'
-set firewall.@zone[-1].forward='REJECT'
+set firewall.@zone[-1].forward='ACCEPT'
 set firewall.@zone[-1].output='ACCEPT'
 set firewall.@zone[-1].name='vpn'
 set firewall.@zone[-1].masq='1'
@@ -65,6 +65,10 @@ set firewall.@zone[-1].network='vpn'
 add firewall forwarding
 set firewall.@forwarding[-1].dest='vpn'
 set firewall.@forwarding[-1].src='lan'
+
+add firewall forwarding
+set firewall.@forwarding[-1].dest='lan'
+set firewall.@forwarding[-1].src='vpn'
 
 commit firewall
 
