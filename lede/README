@@ -80,10 +80,11 @@ passwd
 
 edit /etc/config/wireless to update ssid and key.
 
-edit /etc/config/network for address unique in local network e.g.
+edit /etc/config/network for address/gateway for this client. The address should match the address assigned to the client by the client config file on the server, e.g.
+
   config interface 'lan'
     ...
-    option ipaddr '192.168.8.1'
+    option ipaddr '192.168.200.1'
 
 reboot
 
