@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # one-off script to update openvpn config of running openwrt/lede router
-# to match current config
+# to match commit 1d69d371e1ff0ce1667a1e66a416a40294fbd1aa
 
 rm /etc/config/openvpn
 touch /etc/config/openvpn
