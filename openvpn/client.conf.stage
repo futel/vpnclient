@@ -1,10 +1,7 @@
 client
 dev tun
-remote vpnbox-stage.phu73l.net 1194 udp4
-remote vpnbox-stage.phu73l.net 1194 tcp4
-remote vpnbox-stage.phu73l.net 443 tcp4
-remote vpnbox-stage.phu73l.net 1194 tcp6
-remote vpnbox-stage.phu73l.net 1194 udp6
+proto udp
+remote vpnbox-stage.phu73l.net 1194
 resolv-retry infinite
 nobind
 persist-key
