@@ -2,6 +2,10 @@
 
 uci batch <<EOF
 add_list dhcp.@dnsmasq[0].notinterface=eth0.2
+add_list dhcp.@dnsmasq[0].server='8.8.8.8'
+add_list dhcp.@dnsmasq[0].server='8.8.4.4'
+add_list dhcp.@dnsmasq[0].server='/foobar.baz/10.8.0.1'
+add_list dhcp.@dnsmasq[0].rebind_domain='/foobar.baz/'
 set dhcp.lan.force=1
 commit dhcp
 
@@ -10,12 +14,13 @@ delete network.globals
 set network.wan=interface
 set network.wan.proto=dhcp
 set network.wan.device=""
-set network.wan.dns="8.8.8.8 8.8.4.4"
+set network.wan.peerdns='0'
 
 set network.wan6=interface
 set network.wan6.device='@wan'
 set network.wan6.proto='dhcpv6'
 set network.wan6.reqprefix='60'
+set network.wan6.peerdns='0'
 
 set network.vpn=interface
 set network.vpn.device=tun0
