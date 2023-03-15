@@ -44,7 +44,12 @@ Build:
   scripts/feeds update -a
   scripts/feeds install -a
   make defconfig
-  make menuconfig # XXX select openvpn and make sure CONFIG_PACKAGE_openvpn-openssl is set in .config
+
+  # XXX if .config does not contain "CONFIG_PACKAGE_openvpn-openssl=y",
+  #     do this step and select network/vpn/openvpn/openvpn-easy-rsa,
+  #     then check .config again to confirm. If .config is OK, skip menuconfig.
+  make menuconfig
+
   make download
   time make -j2 BUILD_LOG=1 IGNORE_ERRORS=m V=s  # for 2 cores
 
@@ -78,15 +83,15 @@ ssh root:test@192.168.1.1
 
 passwd
 
-edit /etc/config/wireless to update ssid and key.
-
-edit /etc/config/network for address/gateway for this client. The address should match the address assigned to the client by the client config file on the server, e.g.
+Edit /etc/config/network for address/gateway for this client. The address should match the address assigned to the client by the client config file on the server, e.g.
 
   config interface 'lan'
     ...
     option ipaddr '192.168.200.1'
 
-reboot
+If wireless WAN, edit /etc/config/wireless to update ssid and key.
+
+Reboot.
 
 Notes:
 
